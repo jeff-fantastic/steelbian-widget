@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bydnux7x87sfx"]
+
+[ext_resource type="Theme" uid="uid://cscc6awgjeb1d" path="res://theme.tres" id="1_jjvj6"]
+[ext_resource type="Texture2D" uid="uid://cxhf4ynvd61wl" path="res://main/theme/wskin.png" id="2_640l5"]
+[ext_resource type="FontFile" uid="uid://bemabpntk0hix" path="res://main/fnt/terminus-ttf-4.49.3/TerminusTTF-Bold-4.49.3.ttf" id="3_sua7s"]
+[ext_resource type="Texture2D" uid="uid://bydvuvniyuchc" path="res://main/theme/wclose.png" id="3_u8iyr"]
+[ext_resource type="Texture2D" uid="uid://bmw5naepo66gt" path="res://main/theme/wclosepress.png" id="4_kuhr8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rh8lq"]
+texture = ExtResource("2_640l5")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 64, 21)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsn0l"]
+content_margin_left = 4.0
+content_margin_right = 6.0
+content_margin_bottom = 1.0
+bg_color = Color(0.482155, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uw7cx"]
+font = ExtResource("3_sua7s")
+shadow_size = 0
+shadow_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dm0bu"]
+content_margin_left = 6.0
+content_margin_top = 14.0
+texture = ExtResource("3_u8iyr")
+texture_margin_right = 18.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t86ik"]
+texture = ExtResource("4_kuhr8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qvi2a"]
+texture = ExtResource("2_640l5")
+texture_margin_left = 2.0
+texture_margin_top = 1.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 21, 64, 43)
+draw_center = false
+
+[node name="window" type="Control"]
+layout_mode = 3
+anchor_right = 0.628
+anchor_bottom = 0.515
+offset_right = 0.0799866
+offset_bottom = -0.200027
+metadata/_edit_group_ = true
+
+[node name="sort" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="titlebar" type="PanelContainer" parent="sort"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+theme = ExtResource("1_jjvj6")
+theme_override_styles/panel = SubResource("StyleBoxTexture_rh8lq")
+
+[node name="sort" type="HBoxContainer" parent="sort/titlebar"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="window_name" type="Label" parent="sort/titlebar/sort"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_gsn0l")
+text = "Terminal"
+label_settings = SubResource("LabelSettings_uw7cx")
+vertical_alignment = 2
+
+[node name="window_close" type="Button" parent="sort/titlebar/sort"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_dm0bu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dm0bu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_t86ik")
+
+[node name="container" type="PanelContainer" parent="sort"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_jjvj6")
+theme_override_styles/panel = SubResource("StyleBoxTexture_qvi2a")
+
+[node name="display" type="SubViewportContainer" parent="sort/container"]
+layout_mode = 2
+stretch = true
+
+[node name="application" type="SubViewport" parent="sort/container/display"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(398, 223)
+render_target_update_mode = 4
