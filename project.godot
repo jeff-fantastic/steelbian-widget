@@ -26,9 +26,19 @@ window/size/viewport_height=480
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[input]
+
+mouse_lmb={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(108, 25),"global_position":Vector2(797, 373),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
 [physics]
 
 3d/run_on_separate_thread=true
+common/physics_ticks_per_second=24
+common/max_physics_steps_per_frame=4
 
 [rendering]
 

@@ -74,9 +74,8 @@ label_settings = SubResource("LabelSettings_aciqe")
 vertical_alignment = 1
 
 [node name="window" parent="desktop" instance=ExtResource("3_b56jo")]
-offset_left = 136.0
-offset_top = 117.0
-offset_right = 136.08
-offset_bottom = 116.8
+offset_right = 0.0799866
+offset_bottom = -0.200043
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
