@@ -1,0 +1,55 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cscc6awgjeb1d"]
+
+[ext_resource type="FontFile" uid="uid://cgn545bt8s27n" path="res://main/fnt/terminus-ttf-4.49.3/TerminusTTF-4.49.3.ttf" id="1_uuew5"]
+[ext_resource type="FontFile" uid="uid://bemabpntk0hix" path="res://main/fnt/terminus-ttf-4.49.3/TerminusTTF-Bold-4.49.3.ttf" id="1_y126e"]
+[ext_resource type="Texture2D" uid="uid://bydvuvniyuchc" path="res://main/theme/wclose.png" id="2_g0hvb"]
+[ext_resource type="Texture2D" uid="uid://bmw5naepo66gt" path="res://main/theme/wclosepress.png" id="3_nvsdm"]
+[ext_resource type="Texture2D" uid="uid://cxhf4ynvd61wl" path="res://main/theme/wskin.png" id="4_tbe42"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lo4a8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ow5o"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb32o"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rvj76"]
+texture = ExtResource("4_tbe42")
+texture_margin_left = 6.0
+texture_margin_top = 24.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+expand_margin_left = 2.0
+expand_margin_top = 22.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 1
+
+[resource]
+default_font = ExtResource("1_uuew5")
+default_font_size = 12
+Button/styles/normal = null
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_lo4a8")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_lo4a8")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_lo4a8")
+Panel/styles/panel = SubResource("StyleBoxFlat_8ow5o")
+TextEdit/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+TextEdit/colors/font_readonly_color = Color(0.87451, 0.87451, 0.87451, 1)
+TextEdit/colors/font_selected_color = Color(0, 0, 0, 1)
+TextEdit/colors/selection_color = Color(0.87451, 0.87451, 0.87451, 1)
+TextEdit/constants/line_spacing = 0
+TextEdit/font_sizes/font_size = 12
+TextEdit/styles/focus = SubResource("StyleBoxFlat_rb32o")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_rb32o")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_rb32o")
+Window/colors/title_color = Color(1, 1, 1, 1)
+Window/constants/close_h_offset = 18
+Window/constants/close_v_offset = 17
+Window/constants/title_height = 20
+Window/font_sizes/title_font_size = 12
+Window/fonts/title_font = ExtResource("1_y126e")
+Window/icons/close = ExtResource("2_g0hvb")
+Window/icons/close_pressed = ExtResource("3_nvsdm")
+Window/styles/embedded_border = SubResource("StyleBoxTexture_rvj76")

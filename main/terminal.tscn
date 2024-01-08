@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://5tlio3jqq220"]
+
+[ext_resource type="Theme" uid="uid://cscc6awgjeb1d" path="res://theme.tres" id="1_pey2o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kn5w7"]
+font_size = 12
+font_color = Color(0.87451, 0.87451, 0.87451, 1)
+
+[node name="terminal" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pey2o")
+metadata/_edit_use_anchors_ = true
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="sort" type="VBoxContainer" parent="margin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="relay" type="TextEdit" parent="margin/sort"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_pey2o")
+text = "STEELBIAN ELECTRONICS(R) Terminal Instance
+	(C)1993 All Rights Reserved"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="prompt" type="HBoxContainer" parent="margin/sort"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="user" type="Label" parent="margin/sort/prompt"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_pey2o")
+text = "user@se:~> "
+label_settings = SubResource("LabelSettings_kn5w7")
+
+[node name="input" type="LineEdit" parent="margin/sort/prompt"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_pey2o")
+expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+flat = true
+caret_blink = true
+caret_force_displayed = true

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm35u14ks3x1o"]
+
+[ext_resource type="Theme" uid="uid://cscc6awgjeb1d" path="res://theme.tres" id="1_hj42y"]
+[ext_resource type="PackedScene" uid="uid://5tlio3jqq220" path="res://main/terminal.tscn" id="2_oi24k"]
+[ext_resource type="Texture2D" uid="uid://b7quoblr6rsca" path="res://main/theme/background.png" id="3_70jc8"]
+
+[node name="main" type="Node"]
+
+[node name="desktop" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="terminal" type="Window" parent="desktop"]
+title = "terminal"
+initial_position = 1
+size = Vector2i(320, 188)
+auto_translate = false
+theme = ExtResource("1_hj42y")
+
+[node name="terminal" parent="desktop/terminal" instance=ExtResource("2_oi24k")]
+
+[node name="background" type="TextureRect" parent="desktop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_70jc8")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="taskbar" type="PanelContainer" parent="desktop"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_hj42y")
