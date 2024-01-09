@@ -91,7 +91,7 @@ wm_name = "Terminal"
 metadata/_edit_use_anchors_ = true
 
 [node name="application" parent="desktop/terminal/sort/container/display" index="0"]
-size = Vector2i(343, 122)
+size = Vector2i(343, 121)
 
 [node name="terminal" parent="desktop/terminal/sort/container/display/application" index="0" instance=ExtResource("2_oi24k")]
 
@@ -108,8 +108,7 @@ wm_name = "Ball"
 metadata/_edit_use_anchors_ = true
 
 [node name="application" parent="desktop/ball/sort/container/display" index="0"]
-debug_draw = 4
-size = Vector2i(302, 218)
+size = Vector2i(302, 217)
 
 [node name="boing" parent="desktop/ball/sort/container/display/application" index="0" instance=ExtResource("6_f31ri")]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://lt0pqepm04xm"]
+[gd_scene load_steps=24 format=3 uid="uid://lt0pqepm04xm"]
 
 [ext_resource type="Script" path="res://bounce/script/ball.gd" id="1_65j7c"]
+[ext_resource type="Texture2D" uid="uid://bxi7uulhms6ju" path="res://bounce/tex/ball.png" id="2_0kjaj"]
 [ext_resource type="AudioStream" uid="uid://mmnv2bhrcrqd" path="res://bounce/audio/hit.wav" id="2_w4ptb"]
 
 [sub_resource type="Environment" id="Environment_crekx"]
@@ -10,37 +11,215 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.23
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8u4c"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_yove6"]
-size = Vector2(12, 8)
-orientation = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3dai"]
-albedo_color = Color(0.560784, 0.560784, 0.560784, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_kgtyp"]
-size = Vector2(12, 6)
-center_offset = Vector3(0, 3, 0)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkk8c"]
-albedo_color = Color(1, 0, 0, 1)
+shading_mode = 0
+albedo_texture = ExtResource("2_0kjaj")
+uv1_scale = Vector3(6, 4, 5)
+texture_filter = 0
+billboard_keep_scale = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_iae2b"]
 material = SubResource("StandardMaterial3D_vkk8c")
-radius = 1.0
-height = 2.0
+radius = 1.5
+height = 3.0
+radial_segments = 12
+rings = 6
+
+[sub_resource type="Animation" id="Animation_ifp6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("vis:mesh:material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k16lj"]
+resource_name = "rotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("vis:mesh:material:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_47nrh"]
+_data = {
+"RESET": SubResource("Animation_ifp6o"),
+"rotate": SubResource("Animation_k16lj")
+}
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qfe2q"]
-radius = 1.0
+radius = 1.5
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i3wic"]
 bounce = 1.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_u3ndr"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_fecq1"]
-plane = Plane(1, 0, 0, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3dai"]
+transparency = 4
+cull_mode = 2
+disable_ambient_light = true
+albedo_color = Color(1, 1, 1, 0.286275)
+albedo_texture_msdf = true
+metallic_specular = 0.0
+uv1_scale = Vector3(5.015, 3.015, 1)
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_yove6"]
+size = Vector2(12, 8)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvu4j"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+uv1_scale = Vector3(5.015, 3.015, 1)
+texture_filter = 2
+
+[sub_resource type="Animation" id="Animation_oiafw"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ghost:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ghost:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.25, 1.25, 1.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ghost:material_override:albedo_color:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tepca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ghost:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ghost:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_py612"]
+_data = {
+"RESET": SubResource("Animation_tepca"),
+"hit": SubResource("Animation_oiafw")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0uhrb"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+uv1_scale = Vector3(5.015, 3.015, 1)
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56hrg"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+uv1_scale = Vector3(5.015, 3.015, 1)
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x7pf"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+uv1_scale = Vector3(5.015, 3.015, 1)
+texture_filter = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_2puy7"]
+size = Vector2(8, 8)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bpk2"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+uv1_scale = Vector3(5.015, 3.015, 1)
+texture_filter = 2
 
 [node name="boing" type="Node"]
 
@@ -48,27 +227,24 @@ plane = Plane(1, 0, 0, 0)
 environment = SubResource("Environment_crekx")
 
 [node name="view" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.7, 8)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.27757, 9)
+fov = 60.0
 size = 10.0
 
-[node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-material_override = SubResource("StandardMaterial3D_r8u4c")
-mesh = SubResource("QuadMesh_yove6")
-
-[node name="wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -4)
-material_override = SubResource("StandardMaterial3D_a3dai")
-cast_shadow = 0
-mesh = SubResource("QuadMesh_kgtyp")
-
 [node name="ball" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07289, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.07289, 0)
 script = ExtResource("1_65j7c")
 
 [node name="vis" type="MeshInstance3D" parent="ball"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_iae2b")
+
+[node name="anim" type="AnimationPlayer" parent="ball"]
+libraries = {
+"": SubResource("AnimationLibrary_47nrh")
+}
+autoplay = "rotate"
+speed_scale = 4.0
 
 [node name="col" type="CollisionShape3D" parent="ball"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -89,32 +265,129 @@ attenuation_model = 3
 pitch_scale = 1.5
 max_polyphony = 2
 
-[node name="barrier" type="StaticBody3D" parent="."]
+[node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 physics_material_override = SubResource("PhysicsMaterial_i3wic")
 
-[node name="floor" type="CollisionShape3D" parent="barrier"]
+[node name="col" type="CollisionShape3D" parent="floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("WorldBoundaryShape3D_u3ndr")
 
-[node name="ceiling" type="CollisionShape3D" parent="barrier"]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 5, 0)
+[node name="vis" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = SubResource("StandardMaterial3D_a3dai")
+mesh = SubResource("QuadMesh_yove6")
+skeleton = NodePath("../..")
+
+[node name="ghost" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_pvu4j")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_yove6")
+skeleton = NodePath("../..")
+
+[node name="anim" type="AnimationPlayer" parent="floor"]
+libraries = {
+"": SubResource("AnimationLibrary_py612")
+}
+
+[node name="b_wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, -3)
+physics_material_override = SubResource("PhysicsMaterial_i3wic")
+
+[node name="col" type="CollisionShape3D" parent="b_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("WorldBoundaryShape3D_u3ndr")
 
-[node name="wall" type="CollisionShape3D" parent="barrier"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -1, 0)
-shape = SubResource("WorldBoundaryShape3D_fecq1")
+[node name="vis" type="MeshInstance3D" parent="b_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = SubResource("StandardMaterial3D_a3dai")
+mesh = SubResource("QuadMesh_yove6")
+skeleton = NodePath("../..")
 
-[node name="wall2" type="CollisionShape3D" parent="barrier"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, -1, 0)
-shape = SubResource("WorldBoundaryShape3D_fecq1")
+[node name="ghost" type="MeshInstance3D" parent="b_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.939641, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_0uhrb")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_yove6")
+skeleton = NodePath("../..")
 
-[node name="wall3" type="CollisionShape3D" parent="barrier"]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, -1, 4)
-shape = SubResource("WorldBoundaryShape3D_fecq1")
+[node name="anim" type="AnimationPlayer" parent="b_wall"]
+libraries = {
+"": SubResource("AnimationLibrary_py612")
+}
 
-[node name="wall4" type="CollisionShape3D" parent="barrier"]
-transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 0, -1, -4)
-shape = SubResource("WorldBoundaryShape3D_fecq1")
+[node name="f_wall" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 2, 3)
+physics_material_override = SubResource("PhysicsMaterial_i3wic")
+
+[node name="col" type="CollisionShape3D" parent="f_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("WorldBoundaryShape3D_u3ndr")
+
+[node name="vis" type="MeshInstance3D" parent="f_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_a3dai")
+mesh = SubResource("QuadMesh_yove6")
+skeleton = NodePath("../..")
+
+[node name="ghost" type="MeshInstance3D" parent="f_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_56hrg")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_yove6")
+skeleton = NodePath("../..")
+
+[node name="anim" type="AnimationPlayer" parent="f_wall"]
+libraries = {
+"": SubResource("AnimationLibrary_py612")
+}
+
+[node name="l_wall" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -5, 2, 2)
+physics_material_override = SubResource("PhysicsMaterial_i3wic")
+
+[node name="col" type="CollisionShape3D" parent="l_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("WorldBoundaryShape3D_u3ndr")
+
+[node name="ghost" type="MeshInstance3D" parent="l_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, -8.35187e-23, 1, 2, -1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_3x7pf")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_2puy7")
+skeleton = NodePath("../..")
+
+[node name="anim" type="AnimationPlayer" parent="l_wall"]
+libraries = {
+"": SubResource("AnimationLibrary_py612")
+}
+
+[node name="r_wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1.31134e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.31134e-07, -5.73206e-15, 5, 2, -2)
+physics_material_override = SubResource("PhysicsMaterial_i3wic")
+
+[node name="col" type="CollisionShape3D" parent="r_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 2, -1, 0.5)
+shape = SubResource("WorldBoundaryShape3D_u3ndr")
+
+[node name="ghost" type="MeshInstance3D" parent="r_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.35187e-23, 0, -8.35187e-23, 1, 2, -1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_1bpk2")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_2puy7")
+skeleton = NodePath("../..")
+
+[node name="anim" type="AnimationPlayer" parent="r_wall"]
+libraries = {
+"": SubResource("AnimationLibrary_py612")
+}
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.30049, -0.703494, 0.644051, 0.297443, 0.710701, 0.63752, -0.906219, 0, 0.422808, 0, 0, 0)

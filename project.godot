@@ -13,6 +13,7 @@ config_version=5
 config/name="Steelbian Environment"
 config/description="Steelbian Electronics 1994"
 config/version="0.1"
+run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/show_image=false
 boot_splash/fullsize=false
@@ -37,7 +38,7 @@ mouse_lmb={
 [physics]
 
 3d/run_on_separate_thread=true
-common/physics_ticks_per_second=24
+common/physics_ticks_per_second=30
 common/max_physics_steps_per_frame=4
 
 [rendering]
