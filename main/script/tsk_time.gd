@@ -5,7 +5,7 @@ extends Label
 @onready var timer_update : Timer = $update
 
 ## Whether or not to populate colon
-var add_colon : bool = false
+var add_colon : bool = true
 
 func _ready() -> void:
 	_update()

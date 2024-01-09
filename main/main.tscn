@@ -90,7 +90,7 @@ wm_name = "Terminal"
 metadata/_edit_use_anchors_ = true
 
 [node name="application" parent="desktop/window/sort/container/display" index="0"]
-size = Vector2i(345, 122)
+size = Vector2i(343, 122)
 
 [node name="terminal" parent="desktop/window/sort/container/display/application" index="0" instance=ExtResource("2_oi24k")]
 
