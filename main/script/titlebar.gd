@@ -20,3 +20,10 @@ func _ready() -> void:
 	# Get name from owner
 	var wm_window = owner as WM_Window
 	titlebar_name.text = wm_window.wm_name
+
+# FUNCTION
+#-------------------------------------------------------------------------------
+
+func close_button_pressed() -> void:
+	# Forward signal
+	close_requested.emit()

@@ -9,15 +9,6 @@ Manages Window
 ## The name of the window
 @export var wm_name : String = "WINDOW"
 
-## Whether or not window is following mouse
-var following_mouse : bool = false
-## The starting position of the window drag
-var drag_spos : Vector2 = Vector2.ZERO
-
-func _process(delta : float) -> void:
-	if following_mouse:
-		global_position = global_position + get_global_mouse_position() - drag_spos
-
 # FUNCTION
 #-------------------------------------------------------------------------------
 

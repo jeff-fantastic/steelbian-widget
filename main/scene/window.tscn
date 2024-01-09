@@ -116,3 +116,4 @@ render_target_update_mode = 4
 
 [connection signal="close_requested" from="sort/titlebar" to="." method="close_requested"]
 [connection signal="gui_input" from="sort/titlebar" to="." method="_titlebar_dragged"]
+[connection signal="pressed" from="sort/titlebar/sort/window_close" to="." method="close_requested"]

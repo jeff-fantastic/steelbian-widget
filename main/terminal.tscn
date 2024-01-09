@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://5tlio3jqq220"]
+[gd_scene load_steps=4 format=3 uid="uid://5tlio3jqq220"]
 
 [ext_resource type="Theme" uid="uid://cscc6awgjeb1d" path="res://theme.tres" id="1_pey2o"]
+[ext_resource type="Script" path="res://main/script/terminal.gd" id="2_ofce0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kn5w7"]
 font_size = 12
-font_color = Color(0.87451, 0.87451, 0.87451, 1)
+font_color = Color(0, 1, 0, 1)
 
 [node name="terminal" type="Panel"]
 anchors_preset = 15
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pey2o")
+script = ExtResource("2_ofce0")
 metadata/_edit_use_anchors_ = true
 
 [node name="margin" type="MarginContainer" parent="."]
@@ -27,35 +29,42 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="sort" type="VBoxContainer" parent="margin"]
+[node name="scroll" type="ScrollContainer" parent="margin"]
 layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="sort" type="VBoxContainer" parent="margin/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="relay" type="TextEdit" parent="margin/sort"]
+[node name="relay" type="RichTextLabel" parent="margin/scroll/sort"]
 texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_pey2o")
+theme_override_colors/default_color = Color(0.87451, 0.87451, 0.87451, 1)
+bbcode_enabled = true
 text = "STEELBIAN ELECTRONICS(R) Terminal Instance
-	(C)1993 All Rights Reserved"
-editable = false
-context_menu_enabled = false
+	(C)1993 All Rights Reserved
+ "
+fit_content = true
+scroll_active = false
 shortcut_keys_enabled = false
-virtual_keyboard_enabled = false
-wrap_mode = 1
-scroll_fit_content_height = true
 
-[node name="prompt" type="HBoxContainer" parent="margin/sort"]
+[node name="prompt" type="HBoxContainer" parent="margin/scroll/sort"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="user" type="Label" parent="margin/sort/prompt"]
+[node name="user" type="Label" parent="margin/scroll/sort/prompt"]
 texture_filter = 1
 layout_mode = 2
 theme = ExtResource("1_pey2o")
-text = "user@se:~> "
+text = "user@se:~$ "
 label_settings = SubResource("LabelSettings_kn5w7")
 
-[node name="input" type="LineEdit" parent="margin/sort/prompt"]
+[node name="input" type="LineEdit" parent="margin/scroll/sort/prompt"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -67,3 +76,14 @@ virtual_keyboard_enabled = false
 flat = true
 caret_blink = true
 caret_force_displayed = true
+
+[node name="ls" type="Node" parent="."]
+
+[node name="cd" type="Node" parent="."]
+
+[node name="exec" type="Node" parent="."]
+
+[node name="mkdir" type="Node" parent="."]
+
+[connection signal="resized" from="margin/scroll/sort" to="." method="sort_size_changed"]
+[connection signal="text_submitted" from="margin/scroll/sort/prompt/input" to="." method="command_sent"]
