@@ -39,9 +39,9 @@ texture = ExtResource("4_kuhr8")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qvi2a"]
 texture = ExtResource("2_640l5")
-texture_margin_left = 2.0
+texture_margin_left = 3.0
 texture_margin_top = 1.0
-texture_margin_right = 2.0
+texture_margin_right = 3.0
 texture_margin_bottom = 2.0
 region_rect = Rect2(0, 21, 64, 43)
 
@@ -111,7 +111,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(242, 122)
+size = Vector2i(240, 122)
 render_target_update_mode = 4
 
 [connection signal="close_requested" from="sort/titlebar" to="." method="close_requested"]
