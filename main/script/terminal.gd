@@ -19,6 +19,10 @@ Terminal simulator
 # FUNCTION
 #-------------------------------------------------------------------------------
 
+func input_changed(string : String) -> void:
+	# Set scroll
+	scroll.set_deferred("scroll_vertical", sort.size.y)
+
 func command_sent(string : String) -> void:
 	# Push current to relay
 	var new_string = "\n" + color_string(prefix.text, Color.GREEN) + string

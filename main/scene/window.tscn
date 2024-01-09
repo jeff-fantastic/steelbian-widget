@@ -106,7 +106,6 @@ stretch = true
 
 [node name="application" type="SubViewport" parent="sort/container/display"]
 unique_name_in_owner = true
-transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true

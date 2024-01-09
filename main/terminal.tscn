@@ -85,5 +85,7 @@ caret_force_displayed = true
 
 [node name="mkdir" type="Node" parent="."]
 
+[node name="clear" type="Node" parent="."]
+
 [connection signal="resized" from="margin/scroll/sort" to="." method="sort_size_changed"]
 [connection signal="text_submitted" from="margin/scroll/sort/prompt/input" to="." method="command_sent"]

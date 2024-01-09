@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm35u14ks3x1o"]
+[gd_scene load_steps=9 format=3 uid="uid://cm35u14ks3x1o"]
 
 [ext_resource type="Theme" uid="uid://cscc6awgjeb1d" path="res://theme.tres" id="1_hj42y"]
 [ext_resource type="PackedScene" uid="uid://5tlio3jqq220" path="res://main/terminal.tscn" id="2_oi24k"]
 [ext_resource type="Texture2D" uid="uid://b7quoblr6rsca" path="res://main/theme/background.png" id="3_70jc8"]
 [ext_resource type="PackedScene" uid="uid://bydnux7x87sfx" path="res://main/scene/window.tscn" id="3_b56jo"]
 [ext_resource type="Script" path="res://main/script/tsk_time.gd" id="3_s6g3q"]
+[ext_resource type="PackedScene" uid="uid://lt0pqepm04xm" path="res://bounce/boing.tscn" id="6_f31ri"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pr8e8"]
 font_size = 12
@@ -79,7 +80,7 @@ script = ExtResource("3_s6g3q")
 [node name="update" type="Timer" parent="desktop/taskbar/sort/time"]
 autostart = true
 
-[node name="window" parent="desktop" instance=ExtResource("3_b56jo")]
+[node name="terminal" parent="desktop" instance=ExtResource("3_b56jo")]
 anchor_right = 0.545188
 anchor_bottom = 0.304583
 offset_right = 0.0799866
@@ -89,12 +90,32 @@ grow_vertical = 2
 wm_name = "Terminal"
 metadata/_edit_use_anchors_ = true
 
-[node name="application" parent="desktop/window/sort/container/display" index="0"]
+[node name="application" parent="desktop/terminal/sort/container/display" index="0"]
 size = Vector2i(343, 122)
 
-[node name="terminal" parent="desktop/window/sort/container/display/application" index="0" instance=ExtResource("2_oi24k")]
+[node name="terminal" parent="desktop/terminal/sort/container/display/application" index="0" instance=ExtResource("2_oi24k")]
+
+[node name="ball" parent="desktop" instance=ExtResource("3_b56jo")]
+anchor_right = 0.481125
+anchor_bottom = 0.504583
+offset_left = 292.0
+offset_top = 174.0
+offset_right = 292.08
+offset_bottom = 173.8
+grow_horizontal = 2
+grow_vertical = 2
+wm_name = "Ball"
+metadata/_edit_use_anchors_ = true
+
+[node name="application" parent="desktop/ball/sort/container/display" index="0"]
+debug_draw = 4
+size = Vector2i(302, 218)
+
+[node name="boing" parent="desktop/ball/sort/container/display/application" index="0" instance=ExtResource("6_f31ri")]
 
 [connection signal="timeout" from="desktop/taskbar/sort/time/update" to="desktop/taskbar/sort/time" method="_update"]
-[connection signal="close_requested" from="desktop/window/sort/titlebar" to="desktop/window" method="close_requested"]
+[connection signal="close_requested" from="desktop/terminal/sort/titlebar" to="desktop/terminal" method="close_requested"]
+[connection signal="close_requested" from="desktop/ball/sort/titlebar" to="desktop/ball" method="close_requested"]
 
-[editable path="desktop/window"]
+[editable path="desktop/terminal"]
+[editable path="desktop/ball"]
